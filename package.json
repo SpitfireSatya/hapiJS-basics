@@ -1,0 +1,23 @@
+{
+  "name": "hapijs-basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpitfireSatya/hapiJS-basics.git"
+  },
+  "author": "Spitfire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpitfireSatya/hapiJS-basics/issues"
+  },
+  "homepage": "https://github.com/SpitfireSatya/hapiJS-basics#readme",
+  "dependencies": {
+    "hapi": "^18.1.0"
+  }
+}
