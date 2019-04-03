@@ -1,24 +1,26 @@
+
 (function() {
 
   'use strict';
 
   const Hapi = require('hapi');
+  const simplePlugin = require('./plugins/simple-plugin');
 
   const serverConfig = {
     host: 'localhost',
-    port: 3000
+    port: 3000,
   }
 
   const server = new Hapi.Server(serverConfig);
 
-  function registerErrorHandler() {
+  const registerErrorHandler = () => {
     process.on('unhandledRejection', (err) => {
       console.log(err);
       process.exit(1);
     });
   }
 
-  function registerRoutesToServer() {
+  const registerRoutesToServer = () => {
     const routeConfig = {
       method: 'GET',
       path: '/',
@@ -29,13 +31,18 @@
     server.route(routeConfig)
   }
 
-  function init() {
+  const registerPlugins = async () => {
+    await server.register([simplePlugin]);
+  }
+
+  const init = async () => {
     registerErrorHandler();
     registerRoutesToServer();
-    server.start();
+    await registerPlugins();
+    await server.start();
     console.log(`Server running at: http://${serverConfig.host}:${serverConfig.port}`);
   }
 
   init();
 
-}())
+}());
