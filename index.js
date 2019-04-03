@@ -6,6 +6,7 @@
   const Hapi = require('hapi');
   const simplePlugin = require('./plugins/simple-plugin');
   const externalOptionsPlugin = require('./plugins/external-options-plugin');
+  const dynamicRoutePlugin = require('./plugins/dynamic-route-plugin');
 
   const serverConfig = {
     host: 'localhost',
@@ -40,8 +41,9 @@
         options: {
           method: 'GET',
           path: '/external'
-        }
-      }
+        },
+      },
+      dynamicRoutePlugin
     ]);
   }
 
