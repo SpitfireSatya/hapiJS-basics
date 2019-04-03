@@ -5,6 +5,7 @@
 
   const Hapi = require('hapi');
   const simplePlugin = require('./plugins/simple-plugin');
+  const externalOptionsPlugin = require('./plugins/external-options-plugin');
 
   const serverConfig = {
     host: 'localhost',
@@ -32,7 +33,16 @@
   }
 
   const registerPlugins = async () => {
-    await server.register([simplePlugin]);
+    await server.register([
+      simplePlugin,
+      {
+        plugin: externalOptionsPlugin,
+        options: {
+          method: 'GET',
+          path: '/external'
+        }
+      }
+    ]);
   }
 
   const init = async () => {

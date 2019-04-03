@@ -7,9 +7,9 @@
     method: 'GET',
     path: '/simple',
     handler: (request, reply) => {
-        return '<h1>This is the response from a simple plugin<h1>';
-      }
-  }
+      return '<h1>This is the response from a simple plugin<h1>';
+    }
+  };
 
   const simplePlugin = {
     name: 'simplePlugin',
