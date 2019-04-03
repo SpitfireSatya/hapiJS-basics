@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/SpitfireSatya/hapiJS-basics#readme",
   "dependencies": {
-    "hapi": "^18.1.0"
+    "hapi": "^18.1.0",
+    "inert": "^5.1.3"
   }
 }

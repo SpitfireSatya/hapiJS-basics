@@ -11,7 +11,7 @@
     }
   };
 
-  const dynamicRoutePlugin = {
+  const DynamicRoutePlugin = {
     name: 'dynamicRoutePlugin',
     version: '1.0.0',
     register: async (server, options) => {
@@ -20,6 +20,6 @@
     }
   };
 
-  module.exports = dynamicRoutePlugin;
+  module.exports = DynamicRoutePlugin;
 
 }());

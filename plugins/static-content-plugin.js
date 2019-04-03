@@ -5,14 +5,14 @@
 
   const routeConfig = {
     method: 'GET',
-    path: '/simple',
+    path: '/static/{fileName}',
     handler: (request, reply) => {
-      return '<h1>This is the response from a simple plugin<h1>';
+      return reply.file(request.params.fileName);
     }
   };
 
-  const SimplePlugin = {
-    name: 'simplePlugin',
+  const StaticContentPlugin = {
+    name: 'staticContentPlugin',
     version: '1.0.0',
     register: async (server, options) => {
         server.route(routeConfig);
@@ -20,6 +20,6 @@
     }
   };
 
-  module.exports = SimplePlugin;
+  module.exports = StaticContentPlugin;
 
 }());

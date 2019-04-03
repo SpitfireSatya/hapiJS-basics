@@ -9,7 +9,7 @@
     }
   }
 
-  const externalOptionsPlugin = {
+  const ExternalOptionsPlugin = {
     name: 'externalOptionsPlugin',
     version: '1.0.0',
     register: async (server, options) => {
@@ -18,6 +18,6 @@
     }
   };
 
-  module.exports = externalOptionsPlugin;
+  module.exports = ExternalOptionsPlugin;
 
 }());

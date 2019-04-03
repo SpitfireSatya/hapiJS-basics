@@ -4,13 +4,21 @@
   'use strict';
 
   const Hapi = require('hapi');
-  const simplePlugin = require('./plugins/simple-plugin');
-  const externalOptionsPlugin = require('./plugins/external-options-plugin');
-  const dynamicRoutePlugin = require('./plugins/dynamic-route-plugin');
+  const Path = require('path');
+  const Inert = require('inert');
+  const SimplePlugin = require('./plugins/simple-plugin');
+  const ExternalOptionsPlugin = require('./plugins/external-options-plugin');
+  const DynamicRoutePlugin = require('./plugins/dynamic-route-plugin');
+  const StaticContentPlugin = require('./plugins/static-content-plugin');
 
   const serverConfig = {
     host: 'localhost',
     port: 3000,
+    routes: {
+      files: {
+        relativeTo: Path.join(__dirname, 'public')
+      }
+    }
   }
 
   const server = new Hapi.Server(serverConfig);
@@ -33,23 +41,29 @@
     server.route(routeConfig)
   }
 
+  const registerDependencies = async () => {
+    await server.register(Inert);
+  }
+
   const registerPlugins = async () => {
     await server.register([
-      simplePlugin,
+      SimplePlugin,
       {
-        plugin: externalOptionsPlugin,
+        plugin: ExternalOptionsPlugin,
         options: {
           method: 'GET',
           path: '/external'
         },
       },
-      dynamicRoutePlugin
+      DynamicRoutePlugin,
+      StaticContentPlugin
     ]);
   }
 
   const init = async () => {
     registerErrorHandler();
     registerRoutesToServer();
+    await registerDependencies();
     await registerPlugins();
     await server.start();
     console.log(`Server running at: http://${serverConfig.host}:${serverConfig.port}`);
